@@ -25,6 +25,8 @@ set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${HOMEBREW}/opt/qt@5")
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${HOMEBREW}/opt/qt5")
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${HOMEBREW}/opt/qt")
 
+set (Qt5_DIR "${HOMEBREW}/opt/qt5/lib/cmake/Qt5")
+
 set(CMAKE_C_COMPILER   "clang")
 set(CMAKE_CXX_COMPILER "clang++")
 
