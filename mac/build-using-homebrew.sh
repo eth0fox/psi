@@ -37,8 +37,8 @@ set -e
 
 PATH="${HOMEBREW}/bin:${PATH}"
 PATH="${HOMEBREW}/opt/ccache/libexec:${PATH}"
-CUR_DIR="$(dirname $(realpath -s ${0}))"
-MAIN_DIR="$(realpath -s ${CUR_DIR}/..)"
+CUR_DIR="$(dirname $(realpath ${0}))"
+MAIN_DIR="$(realpath ${CUR_DIR}/..)"
 TOOLCHAIN_FILE="${CUR_DIR}/homebrew-toolchain.cmake"
 
 [ -d "${MAIN_DIR}/plugins/generic" ] && \
@@ -73,7 +73,7 @@ cd "${MAIN_DIR}/builddir"
 
 which nproc > /dev/null && JOBS=$(nproc) || JOBS=4
 
-cmake .. -DCMAKE_TOOLCHAIN_FILE="${TOOLCHAIN_FILE}" ${BUILD_OPTIONS} ${@}
+cmake .. -DCMAKE_TOOLCHAIN_FILE="${TOOLCHAIN_FILE}" -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ${BUILD_OPTIONS} ${@}
 cmake --build . --target all -- -j ${JOBS}
 
 [ "${BUILD_ONLY}" = "true" ] && exit 0
