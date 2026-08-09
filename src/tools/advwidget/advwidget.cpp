@@ -230,27 +230,6 @@ void GAdvancedWidget::Private::moveEvent(QMoveEvent *)
 {
     if (!parentWidget_->isWindow())
         return;
-#ifdef Q_OS_MAC
-    QRect r = qApp->desktop()->availableGeometry(parentWidget_);
-    QRect g = parentWidget_->frameGeometry();
-
-    int margin = 5;
-
-    if (g.top() < r.top())
-        g.moveTo(g.x(), r.top());
-
-    if (g.right() < r.left() + margin)
-        g.moveTo(r.left() + margin - g.width(), g.y());
-
-    if (g.left() > r.right() - margin)
-        g.moveTo(r.right() - margin, g.y());
-
-    if (g.top() > r.bottom() - margin)
-        g.moveTo(g.x(), r.bottom() - margin);
-
-    newGeometry_ = g;
-    QTimer::singleShot(0, this, SLOT(updateGeometry()));
-#endif
 }
 
 void GAdvancedWidget::Private::updateGeometry()
