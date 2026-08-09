@@ -33,7 +33,15 @@
 
 set -e
 
-[ -z "${HOMEBREW}" ] && HOMEBREW="/usr/local"
+[ -z "${OSX_ARCHITECTURES}"] && export OSX_ARCHITECTURES="$(uname -m)"
+
+if [ -z "${HOMEBREW}" ]; then
+    if [ "${OSX_ARCHITECTURES}" = "arm64" ]; then
+        export HOMEBREW=/opt/homebrew
+    else
+        export HOMEBREW=/usr/local
+    fi
+fi
 
 PATH="${HOMEBREW}/bin:${PATH}"
 PATH="${HOMEBREW}/opt/ccache/libexec:${PATH}"

@@ -1,7 +1,7 @@
 if(DEFINED ENV{HOMEBREW})
     set(HOMEBREW "$ENV{HOMEBREW}")
 else()
-    set(HOMEBREW "/usr/local")
+    message( FATAL_ERROR "HOMEBREW environment variable is missing. (are you using the 'build-using-homebrew.sh' script?)" )
 endif()
 
 if(DEFINED ENV{OSX_DEPLOYMENT_TARGET})
