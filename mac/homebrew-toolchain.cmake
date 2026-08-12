@@ -1,7 +1,7 @@
 if(DEFINED ENV{HOMEBREW})
     set(HOMEBREW "$ENV{HOMEBREW}")
 else()
-    set(HOMEBREW "/usr/local")
+    message( FATAL_ERROR "HOMEBREW environment variable is missing. (are you using the 'build-using-homebrew.sh' script?)" )
 endif()
 
 if(DEFINED ENV{OSX_DEPLOYMENT_TARGET})
@@ -24,6 +24,8 @@ set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${HOMEBREW}/opt/openssl")
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${HOMEBREW}/opt/qt@5")
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${HOMEBREW}/opt/qt5")
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${HOMEBREW}/opt/qt")
+
+set (Qt5_DIR "${HOMEBREW}/opt/qt5/lib/cmake/Qt5")
 
 set(CMAKE_C_COMPILER   "clang")
 set(CMAKE_CXX_COMPILER "clang++")
